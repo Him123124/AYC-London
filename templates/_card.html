@@ -1,0 +1,19 @@
+{% macro card(p) %}
+<article class="card" data-id="{{ p.id }}" data-category="{{ p.category }}" data-colours="{{ p.colours|join(' ') }}" data-price="{{ p.price }}" data-name="{{ p.name|lower }}">
+  <button class="card-open" type="button" data-view="{{ p.id }}" aria-label="View {{ p.name }}">
+    <span class="card-media">
+      <img src="{{ url_for('static', filename='img/' ~ p.image) }}" alt="{{ p.alt }}" loading="lazy" width="480" height="600">
+      {% if p.badge %}<span class="badge">{{ p.badge }}</span>{% endif %}
+      {% if not p.in_stock %}<span class="badge badge-out">Sold out</span>{% endif %}
+    </span>
+    <span class="card-name">{{ p.name }}</span>
+    <span class="card-meta">
+      <span class="card-price">{% if p.category == 'hijab' %}from {% endif %}{{ p.price|money }}</span>
+      <span class="dots" aria-label="{{ p.colours|length }} colours">
+        {% for key in p.colours[:6] %}{% for c in site.colours if c.key == key %}<i style="--c:{{ c.hex }}" title="{{ c.name }}"></i>{% endfor %}{% endfor %}
+        {% if p.colours|length > 6 %}<em>+{{ p.colours|length - 6 }}</em>{% endif %}
+      </span>
+    </span>
+  </button>
+</article>
+{% endmacro %}

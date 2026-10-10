@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% from "_card.html" import card with context %}
+{% block title %}Shop hijabs and abayas | AYC London Boutique{% endblock %}
+{% block main %}
+<section class="section page-top">
+  <div class="wrap">
+    <h1 class="h-page">Shop</h1>
+    <p class="lede-dark">Add what you like to your bag and reserve it. We confirm stock with you before anything is taken or sent.</p>
+
+    <div class="filters" id="filters">
+      <div class="f-row">
+        <div class="seg" role="group" aria-label="Type">
+          <button type="button" data-type="all" aria-pressed="true">All</button>
+          <button type="button" data-type="abaya" aria-pressed="false">Abayas</button>
+          <button type="button" data-type="hijab" aria-pressed="false">Hijabs</button>
+        </div>
+        <label class="field-inline">
+          <span class="vh">Sort by</span>
+          <select id="sort" aria-label="Sort by">
+            <option value="featured">Featured</option>
+            <option value="low">Price: low to high</option>
+            <option value="high">Price: high to low</option>
+            <option value="name">Name</option>
+          </select>
+        </label>
+        <label class="field-inline search">
+          <span class="vh">Search</span>
+          <input id="search" type="search" placeholder="Search" autocomplete="off">
+        </label>
+      </div>
+      <div class="f-colours" role="group" aria-label="Colour">
+        <span class="f-label">Colour</span>
+        <button class="chip chip-all" type="button" data-colour="all" aria-pressed="true">Any</button>
+        {% for c in site.colours %}
+        <button class="chip" type="button" data-colour="{{ c.key }}" aria-pressed="false" title="{{ c.name }}" style="--c:{{ c.hex }}"><i aria-hidden="true"></i><span class="vh">{{ c.name }}</span></button>
+        {% endfor %}
+      </div>
+      <p class="f-status" id="f-status" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="grid" id="grid">
+      {% for p in products %}{{ card(p) }}{% endfor %}
+    </div>
+
+    <div class="empty" id="empty" hidden>
+      <h2 id="empty-title">Nothing matches that yet</h2>
+      <p id="empty-text">Try another colour or clear the filters.</p>
+      <div class="empty-actions">
+        <button class="btn btn-line" type="button" id="clear">Clear filters</button>
+        <a class="btn" id="empty-wa" href="#" target="_blank" rel="noopener">Ask us on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/shop.js') }}"></script>{% endblock %}

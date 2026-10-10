@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Visit AYC London Boutique | 114 High Rd, Leyton{% endblock %}
+{% block main %}
+<section class="section page-top">
+  <div class="wrap">
+    <h1 class="h-page">Visit and contact</h1>
+
+    <div class="visit-grid">
+      <div class="visit-info">
+        <img class="visit-photo" src="{{ url_for('static', filename='img/storefront.webp') }}" alt="AYC London Boutique shopfront on High Road, Leyton" width="507" height="623">
+      </div>
+
+      <div class="visit-details">
+        <h2 class="h-small">Address</h2>
+        <address>
+          {{ site.address.street }}, {{ site.address.area }}<br>
+          {{ site.address.city }} {{ site.address.postcode }}<br>
+          {{ site.address.country }}
+        </address>
+
+        <h2 class="h-small">Opening hours</h2>
+        {% if site.hours %}
+        <dl class="hours">
+          {% for day, h in site.hours.items() %}<dt>{{ day }}</dt><dd>{{ h }}</dd>{% endfor %}
+        </dl>
+        {% else %}
+        <p>{{ site.hours_note }}</p>
+        {% endif %}
+
+        <h2 class="h-small">Get in touch</h2>
+        <div class="actions-col">
+          <a class="btn" href="tel:{{ site.phone_tel }}"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>Call {{ site.phone_display }}</a>
+          <a class="btn btn-line" href="https://wa.me/{{ site.whatsapp_number }}" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
+          <a class="btn btn-line" href="https://www.google.com/maps/dir/?api=1&destination={{ (site.address.street ~ ', ' ~ site.address.area ~ ', ' ~ site.address.city ~ ' ' ~ site.address.postcode)|urlencode }}" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Get directions</a>
+        </div>
+        <p class="small muted">Kerbside pickup: reserve in your bag, choose "Kerbside pickup", and call us when you arrive.</p>
+      </div>
+    </div>
+
+    <div class="map">
+      <iframe title="Map showing AYC London Boutique" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q={{ (site.address.street ~ ', ' ~ site.address.area ~ ', ' ~ site.address.city ~ ' ' ~ site.address.postcode)|urlencode }}&output=embed"></iframe>
+    </div>
+
+    <div class="contact-wrap">
+      <div>
+        <h2 class="h-section">Send us a message</h2>
+        <p class="lede-dark">Ask about a colour, a size or an order. We reply by phone or email.</p>
+      </div>
+      <form class="form" id="contact-form" novalidate>
+        <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" autocomplete="name" required><p class="err" data-err="name"></p></div>
+        <div class="field"><label for="c-contact">Phone or email</label><input id="c-contact" name="contact" autocomplete="email" required><p class="err" data-err="contact"></p></div>
+        <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" rows="5" required></textarea><p class="err" data-err="message"></p></div>
+        <button class="btn" type="submit">Send message</button>
+        <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/visit.js') }}"></script>{% endblock %}

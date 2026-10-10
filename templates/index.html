@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% from "_card.html" import card with context %}
+{% block main %}
+
+<section class="hero" id="hero" data-tone="light" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1 id="hero-title">Hijabs and abayas in every colour you can name.</h1>
+      <p class="lede">Pick a colour from the wall to see what we have online. The full range is on the shelves in Leyton.</p>
+    </div>
+
+    <div class="wall" role="radiogroup" aria-label="Choose a colour">
+      {% for c in site.colours %}
+      <button class="roll" type="button" role="radio" aria-checked="false" data-key="{{ c.key }}" data-hex="{{ c.hex }}" data-name="{{ c.name }}" style="--c:{{ c.hex }}">
+        <span class="roll-disc" aria-hidden="true"></span>
+        <span class="roll-name">{{ c.name }}</span>
+      </button>
+      {% endfor %}
+    </div>
+
+    <div class="hero-result" id="hero-result" aria-live="polite">
+      <p class="hero-result-text" id="hero-result-text"></p>
+      <div class="hero-actions">
+        <a class="btn btn-inv" id="hero-shop" href="{{ url_for('shop') }}">Shop all</a>
+        <a class="btn btn-ghost" href="{{ url_for('visit') }}">Visit the shop</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="types-title">
+  <div class="wrap">
+    <h2 id="types-title" class="h-section">Shop by type</h2>
+    <div class="types">
+      <a class="type" href="{{ url_for('shop') }}?type=abaya">
+        <span class="type-media"><img src="{{ url_for('static', filename='img/abaya-taupe.webp') }}" alt="Taupe layered abaya with beaded trim" loading="lazy" width="487" height="775"></span>
+        <span class="type-name">Abayas</span>
+        <span class="type-text">Open fronts, layers and occasion wear.</span>
+      </a>
+      <a class="type" href="{{ url_for('shop') }}?type=hijab">
+        <span class="type-media"><img src="{{ url_for('static', filename='img/hijab-ribbed.webp') }}" alt="Stack of ribbed jersey hijabs in four colours" loading="lazy" width="467" height="675"></span>
+        <span class="type-name">Hijabs</span>
+        <span class="type-text">Jersey and ribbed jersey, plus scarves.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-white" aria-labelledby="feat-title">
+  <div class="wrap">
+    <div class="row-head">
+      <h2 id="feat-title" class="h-section">Popular right now</h2>
+      <a class="link" href="{{ url_for('shop') }}">See everything</a>
+    </div>
+    <div class="grid">
+      {% for p in featured %}{{ card(p) }}{% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="inside-title">
+  <div class="wrap">
+    <h2 id="inside-title" class="h-section">Inside the shop</h2>
+    <p class="lede-dark">Every colour is rolled and shelved by shade, so you can hold a hijab up against your abaya before you decide.</p>
+    <div class="mosaic">
+      <button class="tile tile-tall" type="button" data-lightbox="shelves-neutrals.webp" data-cap="Neutral jersey hijabs, rolled by shade">
+        <img src="{{ url_for('static', filename='img/shelves-neutrals.webp') }}" alt="Shelves of rolled jersey hijabs in sand, mauve and grey" loading="lazy" width="483" height="825">
+      </button>
+      <button class="tile" type="button" data-lightbox="shelves-colour.webp" data-cap="Colour shelves: teal, cobalt, mustard, pink and more">
+        <img src="{{ url_for('static', filename='img/shelves-colour.webp') }}" alt="Shelves of rolled jersey hijabs in bright colours" loading="lazy" width="502" height="590">
+      </button>
+      <button class="tile" type="button" data-lightbox="storefront.webp" data-cap="AYC London Boutique, 114 High Rd, Leyton">
+        <img src="{{ url_for('static', filename='img/storefront.webp') }}" alt="AYC London Boutique shopfront on High Road, Leyton" loading="lazy" width="507" height="623">
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="section section-white" aria-labelledby="ways-title">
+  <div class="wrap">
+    <h2 id="ways-title" class="h-section">Three ways to shop</h2>
+    <ul class="ways">
+      <li><svg class="ico ico-lg" aria-hidden="true"><use href="#i-store"/></svg><h3>In store</h3><p>Come in, feel the fabrics and try the colours together. Our team will help you match hijabs to outfits.</p></li>
+      <li><svg class="ico ico-lg" aria-hidden="true"><use href="#i-car"/></svg><h3>Kerbside pickup</h3><p>Reserve online and we bring your order out to you. No need to park up and come in.</p></li>
+      <li><svg class="ico ico-lg" aria-hidden="true"><use href="#i-box"/></svg><h3>Delivery</h3><p>Order from home and we send it to your door. We confirm the delivery cost before anything is sent.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="rev-title">
+  <div class="wrap reviews">
+    <div class="rating">
+      <p class="rating-num">{{ '%.1f'|format(site.google_rating) }}</p>
+      <p class="stars" aria-label="{{ site.google_rating }} out of 5 stars">{% for i in range(5) %}<svg class="ico star {{ 'on' if i < site.google_rating|round(0, 'floor') else '' }}" aria-hidden="true"><use href="#i-star"/></svg>{% endfor %}</p>
+      <p class="muted small">{{ site.google_review_count }} reviews on Google</p>
+    </div>
+    <div>
+      <h2 id="rev-title" class="h-section">What customers say</h2>
+      <div class="quotes">
+        {% for r in site.reviews %}
+        <figure class="quote">
+          <blockquote>{{ r.text }}</blockquote>
+          <figcaption>{{ r.name }}, {{ r.source }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-white cta" aria-labelledby="cta-title">
+  <div class="wrap cta-grid">
+    <div>
+      <h2 id="cta-title" class="h-section">Come and see the colours</h2>
+      <p class="lede-dark">{{ site.address.street }}, {{ site.address.area }}, {{ site.address.city }} {{ site.address.postcode }}</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn" href="{{ url_for('visit') }}">Opening hours and directions</a>
+      <a class="btn btn-line" href="tel:{{ site.phone_tel }}">Call {{ site.phone_display }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/home.js') }}"></script>{% endblock %}

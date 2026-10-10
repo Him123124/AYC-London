@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Admin sign in{% endblock %}
+{% block main %}
+<section class="section page-top">
+  <div class="wrap narrow">
+    <h1 class="h-page">Admin sign in</h1>
+    {% with msgs = get_flashed_messages() %}{% for m in msgs %}<p class="err show">{{ m }}</p>{% endfor %}{% endwith %}
+    <form class="form" method="post">
+      <div class="field"><label for="pw">Password</label><input id="pw" name="password" type="password" autocomplete="current-password" required></div>
+      <button class="btn" type="submit">Sign in</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

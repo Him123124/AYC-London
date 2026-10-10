@@ -1,0 +1,99 @@
+{
+  "name": "AYC London Boutique",
+  "tagline": "Hijabs and abayas in every colour you can name",
+  "address": {
+    "street": "114 High Rd",
+    "area": "Leyton",
+    "city": "London",
+    "postcode": "E15 2BX",
+    "country": "United Kingdom"
+  },
+  "phone_display": "+44 7719 951000",
+  "phone_tel": "+447719951000",
+  "whatsapp_number": "447719951000",
+  "instagram": "ayc.london",
+  "google_rating": 4.0,
+  "google_review_count": 57,
+  "services": [
+    "In-store shopping",
+    "Kerbside pickup",
+    "Delivery"
+  ],
+  "hours_note": "Opening hours change, so check today's hours on Google Maps or call us before you travel.",
+  "hours": {},
+  "colours": [
+    {
+      "key": "sand",
+      "name": "Sand",
+      "hex": "#D9BF9A"
+    },
+    {
+      "key": "taupe",
+      "name": "Taupe",
+      "hex": "#A68F80"
+    },
+    {
+      "key": "mustard",
+      "name": "Mustard",
+      "hex": "#D69B1B"
+    },
+    {
+      "key": "olive",
+      "name": "Olive",
+      "hex": "#5A6130"
+    },
+    {
+      "key": "blush",
+      "name": "Blush",
+      "hex": "#E4B3AA"
+    },
+    {
+      "key": "lilac",
+      "name": "Lilac",
+      "hex": "#A99BBE"
+    },
+    {
+      "key": "silver",
+      "name": "Silver",
+      "hex": "#9DA2A8"
+    },
+    {
+      "key": "charcoal",
+      "name": "Charcoal",
+      "hex": "#3E3F43"
+    },
+    {
+      "key": "teal",
+      "name": "Teal",
+      "hex": "#2F8F8B"
+    },
+    {
+      "key": "cobalt",
+      "name": "Cobalt",
+      "hex": "#1F6FB5"
+    },
+    {
+      "key": "burgundy",
+      "name": "Burgundy",
+      "hex": "#6E1F34"
+    },
+    {
+      "key": "black",
+      "name": "Black",
+      "hex": "#1B1B1C"
+    }
+  ],
+  "reviews": [
+    {
+      "name": "Khadija",
+      "text": "The customer service was excellent and the team communicated well throughout. They helped me find the perfect abaya for my holiday.",
+      "source": "Google review"
+    },
+    {
+      "name": "Aliyah",
+      "text": "I always pop in after jummah. The abayas and hijabs are beautiful, and the sisters help me match my hijabs to my outfits.",
+      "source": "Google review"
+    }
+  ],
+  "order_note": "You don't pay online. We message you to confirm stock and delivery cost, then you pay when you collect or when it arrives."
+}

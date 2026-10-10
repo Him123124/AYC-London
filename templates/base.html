@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}AYC London Boutique | Hijabs and abayas in Leyton{% endblock %}</title>
+  <meta name="description" content="{% block description %}Hijabs, jersey hijabs, scarves and abayas in many colours and sizes. Visit AYC London Boutique at 114 High Rd, Leyton, or order for kerbside pickup or delivery.{% endblock %}">
+  <meta name="theme-color" content="#F9F9F9">
+  <meta property="og:title" content="AYC London Boutique">
+  <meta property="og:description" content="Hijabs and abayas in every colour you can name. Leyton, East London.">
+  <meta property="og:image" content="{{ url_for('static', filename='img/storefront.webp') }}">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ClothingStore",
+    "name": "{{ site.name }}",
+    "telephone": "{{ site.phone_tel }}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{ site.address.street }}",
+      "addressLocality": "{{ site.address.area }}, {{ site.address.city }}",
+      "postalCode": "{{ site.address.postcode }}",
+      "addressCountry": "GB"
+    },
+    "sameAs": ["https://www.instagram.com/{{ site.instagram }}"],
+    "aggregateRating": {"@type": "AggregateRating", "ratingValue": "{{ site.google_rating }}", "reviewCount": "{{ site.google_review_count }}"}
+  }
+  </script>
+</head>
+<body data-page="{{ page }}">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z M9 8V6a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6-5.6-6-10.5a6 6 0 0 1 12 0C18 15.4 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 4h3l1.5 4-2 1.3a10 10 0 0 0 5.7 5.7L16 13l4 1.5v3a2 2 0 0 1-2 2A14 14 0 0 1 4.5 6a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="16.8" cy="7.2" r="1" fill="currentColor"/></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 9.5 5.5 4h13L20 9.5M4 9.5h16M4 9.5V20h16V9.5M10 20v-6h4v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M4 15v-3l2-5h12l2 5v3M4 15h16M4 15v3h3v-3M17 15v3h3v-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8" cy="12.5" r=".9" fill="currentColor"/><circle cx="16" cy="12.5" r=".9" fill="currentColor"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="m12 3 8 4v10l-8 4-8-4V7l8-4Zm-8 4 8 4 8-4M12 11v10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8 6.8 19.6l1-5.8L3.5 9.7l5.9-.8L12 3.5Z"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="{{ url_for('home') }}" aria-label="AYC London Boutique, home">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="AYC London Boutique" width="93" height="58">
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="{{ url_for('home') }}" {% if page=='home' %}aria-current="page"{% endif %}>Home</a>
+      <a href="{{ url_for('shop') }}" {% if page=='shop' %}aria-current="page"{% endif %}>Shop</a>
+      <a href="{{ url_for('visit') }}" {% if page=='visit' %}aria-current="page"{% endif %}>Visit and contact</a>
+    </nav>
+    <div class="bar-actions">
+      <button class="bag-btn" type="button" data-open-bag aria-label="Open your bag">
+        <svg class="ico" aria-hidden="true"><use href="#i-bag"/></svg>
+        <span>Bag</span><span class="bag-count" data-bag-count aria-live="polite">0</span>
+      </button>
+      <button class="menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Menu">
+        <svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <img class="foot-logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="AYC London Boutique" width="150" height="94">
+      <p class="muted">Hijabs and abayas in many colours and sizes.</p>
+    </div>
+    <div>
+      <h2 class="h-small">Find us</h2>
+      <address>
+        {{ site.address.street }}, {{ site.address.area }}<br>
+        {{ site.address.city }} {{ site.address.postcode }}
+      </address>
+      <p><a href="tel:{{ site.phone_tel }}">{{ site.phone_display }}</a></p>
+    </div>
+    <div>
+      <h2 class="h-small">Ways to shop</h2>
+      <ul class="plain">
+        {% for s in site.services %}<li>{{ s }}</li>{% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h2 class="h-small">Follow</h2>
+      <p><a class="icon-link" href="https://www.instagram.com/{{ site.instagram }}" rel="noopener" target="_blank"><svg class="ico" aria-hidden="true"><use href="#i-insta"/></svg>@{{ site.instagram }}</a></p>
+      <p><a class="icon-link" href="https://wa.me/{{ site.whatsapp_number }}" rel="noopener" target="_blank"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp us</a></p>
+    </div>
+  </div>
+  <div class="wrap foot-base"><span>&copy; {{ year }} AYC London Boutique</span></div>
+</footer>
+
+<!-- Product quick view -->
+<dialog id="pview" class="modal" aria-labelledby="pv-name">
+  <button class="x" type="button" data-close aria-label="Close"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+  <div class="pv">
+    <img class="pv-img" id="pv-img" alt="" width="480" height="600">
+    <div class="pv-body">
+      <h2 id="pv-name" class="pv-name"></h2>
+      <p class="pv-price" id="pv-price"></p>
+      <p id="pv-desc" class="muted"></p>
+      <fieldset class="opt" id="pv-colours"><legend>Colour: <span id="pv-colour-name"></span></legend><div class="swatches" role="radiogroup"></div></fieldset>
+      <fieldset class="opt" id="pv-sizes"><legend>Size</legend><div class="pills" role="radiogroup"></div></fieldset>
+      <div class="opt buy-row">
+        <div class="qty" aria-label="Quantity">
+          <button type="button" data-qty="-1" aria-label="Fewer">&minus;</button>
+          <output id="pv-qty">1</output>
+          <button type="button" data-qty="1" aria-label="More">+</button>
+        </div>
+        <button class="btn" type="button" id="pv-add">Add to bag</button>
+      </div>
+      <p class="small"><a id="pv-ask" href="#" target="_blank" rel="noopener">Ask about this on WhatsApp</a></p>
+    </div>
+  </div>
+</dialog>
+
+<!-- Bag drawer -->
+<dialog id="bag" class="drawer" aria-labelledby="bag-title">
+  <div class="drawer-head">
+    <h2 id="bag-title">Your bag</h2>
+    <button class="x" type="button" data-close aria-label="Close bag"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <div class="drawer-body" id="bag-body"></div>
+</dialog>
+
+<!-- Image lightbox -->
+<dialog id="lightbox" class="lightbox" aria-label="Photo">
+  <button class="x" type="button" data-close aria-label="Close photo"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+  <img id="lb-img" alt="">
+  <p id="lb-cap" class="small"></p>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  window.AYC = {
+    products: {{ products_json|safe }},
+    colours: {{ colours_json|safe }},
+    whatsapp: "{{ site.whatsapp_number }}",
+    orderNote: {{ site.order_note|tojson }},
+    imgBase: "{{ url_for('static', filename='img/') }}",
+    staticMode: {{ 'true' if static_mode else 'false' }}
+  };
+</script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

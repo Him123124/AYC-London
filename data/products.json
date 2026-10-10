@@ -1,0 +1,70 @@
+{
+  "_note": "PLACEHOLDER CONTENT. Prices, sizes and descriptions are examples, replace them with your real ones. Add a product by copying a block. 'colours' must use keys from site.json. Set 'in_stock' to false to show Sold out.",
+  "products": [
+    {
+      "id": "silver-satin-abaya",
+      "name": "Silver satin open abaya",
+      "category": "abaya",
+      "price": 65.00,
+      "image": "abaya-silver.webp",
+      "alt": "Silver satin abaya with a charcoal front panel, worn with a small black crossbody bag",
+      "description": "A flowing open-front abaya in soft silver satin with a charcoal panel and contrast cuffs. Light, with plenty of movement when you walk.",
+      "colours": ["silver", "charcoal"],
+      "sizes": ["52", "54", "56", "58"],
+      "badge": "New",
+      "in_stock": true
+    },
+    {
+      "id": "taupe-beaded-abaya",
+      "name": "Layered taupe abaya with beaded trim",
+      "category": "abaya",
+      "price": 79.00,
+      "image": "abaya-taupe.webp",
+      "alt": "Taupe layered abaya with beaded edging on the sleeves and tiers",
+      "description": "Wide sleeves and tiered layers, finished with fine beaded edging along every seam. A good choice for Eid and special occasions.",
+      "colours": ["taupe"],
+      "sizes": ["52", "54", "56", "58"],
+      "badge": "Occasion wear",
+      "in_stock": true
+    },
+    {
+      "id": "ribbed-jersey-hijab",
+      "name": "Ribbed jersey hijab",
+      "category": "hijab",
+      "price": 9.00,
+      "image": "hijab-ribbed.webp",
+      "alt": "Stack of ribbed jersey hijabs in sand, taupe, mustard and olive",
+      "description": "A textured ribbed jersey that stays in place and does not need much ironing. Stretchy, breathable and easy to wear all day.",
+      "colours": ["sand", "taupe", "mustard", "olive"],
+      "sizes": [],
+      "badge": "",
+      "in_stock": true
+    },
+    {
+      "id": "jersey-hijab-neutrals",
+      "name": "Plain jersey hijab, neutrals",
+      "category": "hijab",
+      "price": 8.00,
+      "image": "shelves-neutrals.webp",
+      "alt": "Shelves of rolled jersey hijabs in sand, mauve, grey and brown",
+      "description": "Our everyday jersey hijab in soft neutrals, rolled and ready on the shelves. Choose a shade to match your abayas.",
+      "colours": ["sand", "taupe", "blush", "lilac", "silver", "charcoal"],
+      "sizes": [],
+      "badge": "",
+      "in_stock": true
+    },
+    {
+      "id": "jersey-hijab-brights",
+      "name": "Plain jersey hijab, colour",
+      "category": "hijab",
+      "price": 8.00,
+      "image": "shelves-colour.webp",
+      "alt": "Shelves of rolled jersey hijabs in teal, cobalt, mustard, pink, purple and burgundy",
+      "description": "The same easy jersey in richer colours, from teal and cobalt to mustard and burgundy.",
+      "colours": ["mustard", "teal", "cobalt", "blush", "lilac", "burgundy", "black"],
+      "sizes": [],
+      "badge": "",
+      "in_stock": true
+    }
+  ]
+}

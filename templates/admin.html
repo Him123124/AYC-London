@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Orders and messages{% endblock %}
+{% block main %}
+<section class="section page-top">
+  <div class="wrap">
+    <div class="row-head">
+      <h1 class="h-page">Orders and messages</h1>
+      <form method="post" action="{{ url_for('admin_logout') }}"><button class="btn btn-line" type="submit">Sign out</button></form>
+    </div>
+
+    <h2 class="h-section">Orders ({{ orders|length }})</h2>
+    {% if not orders %}<p class="muted">No orders yet. New reservations from the bag appear here.</p>{% endif %}
+    <div class="admin-list">
+      {% for o in orders %}
+      <article class="admin-card">
+        <header>
+          <strong>{{ o.ref }}</strong>
+          <span class="muted small">{{ o.created_at[:16].replace('T', ' ') }} UTC</span>
+          <span class="status status-{{ o.status }}">{{ o.status }}</span>
+        </header>
+        <p>{{ o.name }} &middot; <a href="tel:{{ o.phone }}">{{ o.phone }}</a>{% if o.email %} &middot; {{ o.email }}{% endif %}</p>
+        <p class="small">Method: {{ o.method }}{% if o.address %} &middot; {{ o.address }}{% endif %}</p>
+        <ul class="plain">
+          {% for i in o['items'] %}<li>{{ i.qty }} &times; {{ i.name }}{% if i.colour %}, {{ i.colour }}{% endif %}{% if i.size %}, size {{ i.size }}{% endif %} <span class="muted">({{ i.line_total|money }})</span></li>{% endfor %}
+        </ul>
+        {% if o.notes %}<p class="small">Notes: {{ o.notes }}</p>{% endif %}
+        <p><strong>Total {{ o.total|money }}</strong></p>
+        <form method="post" action="{{ url_for('admin_order_status', order_id=o.id) }}" class="inline-form">
+          <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+          <label class="vh" for="st-{{ o.id }}">Status</label>
+          <select id="st-{{ o.id }}" name="status">
+            {% for s in ['new','confirmed','ready','completed','cancelled'] %}<option value="{{ s }}" {{ 'selected' if o.status == s }}>{{ s|capitalize }}</option>{% endfor %}
+          </select>
+          <button class="btn btn-line btn-sm" type="submit">Update</button>
+        </form>
+      </article>
+      {% endfor %}
+    </div>
+
+    <h2 class="h-section" style="margin-top:3rem">Messages ({{ messages|length }})</h2>
+    {% if not messages %}<p class="muted">No messages yet.</p>{% endif %}
+    <div class="admin-list">
+      {% for m in messages %}
+      <article class="admin-card {{ 'done' if m.handled }}">
+        <header><strong>{{ m.name }}</strong><span class="muted small">{{ m.created_at[:16].replace('T', ' ') }} UTC</span></header>
+        <p class="small">{{ m.contact }}</p>
+        <p>{{ m.message }}</p>
+        <form method="post" action="{{ url_for('admin_message_handled', msg_id=m.id) }}" class="inline-form">
+          <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+          <button class="btn btn-line btn-sm" type="submit">{{ 'Mark as open' if m.handled else 'Mark as handled' }}</button>
+        </form>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
